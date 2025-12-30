@@ -157,14 +157,14 @@ defmodule Meme do
         nil ->
           quote do
             {:ok, true} =
-              Cachex.put(:meme, key, {:exists, value}, ttl: unquote(timeout), local: true)
+              Cachex.put(:meme, key, {:exists, value}, ttl: unquote(timeout), expire: unquote(timeout), local: true)
           end
 
         {ast, _, _} when ast in [:fn, :&] ->
           quote do
             if unquote(condition).(value) == true do
               {:ok, true} =
-                Cachex.put(:meme, key, {:exists, value}, ttl: unquote(timeout), local: true)
+                Cachex.put(:meme, key, {:exists, value}, ttl: unquote(timeout), expire: unquote(timeout), local: true)
             end
           end
       end
