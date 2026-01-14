@@ -3,19 +3,19 @@ defmodule Meme.Mixfile do
 
   def project do
     [
-      app: :meme,
+      app: :meme_2,
       version: "0.3.0",
       elixir: "~> 1.14",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      description: "Memoization (caching) of function calls",
-      source_url: "https://github.com/timCF/meme/",
+      description: "Memorization (caching) of function calls",
+      source_url: "https://github.com/NeoArcanjo/meme_cachex_4/",
       package: [
         licenses: ["Apache 2.0"],
         maintainers: ["Ilja Tkachuk aka timCF"],
         links: %{
-          "GitHub" => "https://github.com/timCF/meme/",
+          "GitHub" => "https://github.com/NeoArcanjo/meme_cachex_4/",
           "Author's home page" => "https://timcf.github.io/"
         }
       ],
