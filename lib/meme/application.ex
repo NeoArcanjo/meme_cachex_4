@@ -23,7 +23,7 @@ defmodule Meme.Application do
     opts = [name: :meme]
 
     extra_opts =
-      if :code.ensure_loaded(Cachex.Router.Ring) and function_exported?(Cachex.Spec, :router, 1) do
+      if Code.ensure_loaded?(Cachex.Router.Ring) and function_exported?(Cachex.Spec, :router, 1) do
         [router: Cachex.Spec.router(module: Cachex.Router.Ring)]
       else
         []
