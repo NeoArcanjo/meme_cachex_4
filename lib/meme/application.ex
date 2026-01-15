@@ -25,7 +25,15 @@ defmodule Meme.Application do
     extra_opts =
       if Code.ensure_loaded?(Cachex.Router.Ring) and macro_exported?(Cachex.Spec, :router, 1) do
         import Cachex.Spec, only: [router: 1]
-        [router: router(module: Cachex.Router.Ring)]
+
+        [
+          router: router(module: Cachex.Router.Ring),
+          options: [
+            limit: 10_000,
+            policy: :lru,
+            stats: true
+          ]
+        ]
       else
         []
       end
