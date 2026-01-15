@@ -3,7 +3,7 @@ defmodule Meme.Mixfile do
 
   def project do
     [
-      app: :meme_2,
+      app: :meme,
       version: "0.3.0",
       elixir: "~> 1.14",
       build_embedded: Mix.env() == :prod,
