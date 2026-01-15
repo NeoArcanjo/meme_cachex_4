@@ -20,10 +20,11 @@ defmodule Meme.Application do
   end
 
   defp build_cache do
+    cachex_version = Application.spec(:cachex, :vsn) 
     opts = [name: :meme]
 
     extra_opts =
-      if Code.ensure_loaded?(Cachex.Router.Ring) and macro_exported?(Cachex.Spec, :router, 1) do
+      if Version.match?(cachex_version, "~> 4.0")do
         import Cachex.Spec, only: [router: 1]
 
         [
