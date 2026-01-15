@@ -10,12 +10,25 @@ defmodule Meme.Application do
     children = [
       # Starts a worker by calling: Meme.Worker.start_link(arg1, arg2, arg3)
       # worker(Meme.Worker, [arg1, arg2, arg3]),
-      Supervisor.child_spec({Cachex, name: :meme}, id: :meme)
+      Supervisor.child_spec(build_cache(), id: :meme)
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Meme.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  defp build_cache do
+    opts = [name: :meme]
+
+    extra_opts =
+      if :code.ensure_loaded(Cachex.Router.Ring) and function_exported?(Cachex.Spec, :router, 1) do
+        [router: Cachex.Spec.router(module: Cachex.Router.Ring)]
+      else
+        []
+      end
+
+    {Cachex, Keyword.merge(opts, extra_opts)}
   end
 end
