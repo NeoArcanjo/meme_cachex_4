@@ -20,7 +20,7 @@ defmodule Meme.Application do
   end
 
   defp build_cache do
-    cachex_version = Application.spec(:cachex, :vsn)
+    cachex_version = Application.spec(:cachex, :vsn) |> to_string()
     opts = [name: :meme]
 
     extra_opts =
